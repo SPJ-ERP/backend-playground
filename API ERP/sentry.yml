@@ -1,0 +1,52 @@
+info:
+  name: sentry
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{base_url}}/webhooks/sentry"
+  body:
+    type: json
+    data: |-
+      {
+        "action": "triggered",
+        "data": {
+          "issue": {
+            "title": "ObjectBoxException: object put failed",
+            "level": "error",
+            "culprit": "helpers.dart",
+            "environment": "production",
+            "permalink": "https://sentry.io/issues/123456/"
+          },
+          "project": {
+            "slug": "erp"
+          },
+          "event": {
+            "title": "ObjectBoxException: object put failed",
+            "level": "error",
+            "culprit": "helpers.js",
+            "environment": "production",
+            "exception": {
+              "values": [
+                {
+                  "stacktrace": {
+                    "frames": [
+                      {
+                        "function": "ObjectBoxNativeError.throwMapped"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
