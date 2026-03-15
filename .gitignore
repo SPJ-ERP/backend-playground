@@ -1,6 +1,7 @@
 /node_modules
 /dist
 /logs
+/drizzle
 
 .vscode
 .DS_Store
